@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         //Format = Jetpack Compose vs. XML.
         setContent {
             HelloAndroidTheme {
-                //Screen structure
+                //Screen structure.
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     //Function called. Name set to Android.
                     Greeting(
