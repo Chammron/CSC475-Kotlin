@@ -10,7 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun FavoritesScreen(onRecipeClick: (Recipe) -> Unit, onFavoriteToggle: (Recipe) -> Unit) {
+fun FavoritesScreen(
+    onRecipeClick: (Recipe) -> Unit,
+    onFavoriteToggle: (Recipe) -> Unit
+) {
     val favoriteRecipes = RecipeData.recipes.filter { it.isFavorite }
 
     if (favoriteRecipes.isEmpty()) {
@@ -23,13 +26,13 @@ fun FavoritesScreen(onRecipeClick: (Recipe) -> Unit, onFavoriteToggle: (Recipe) 
     } else {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
+            contentPadding = PaddingValues(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(favoriteRecipes) { recipe ->
                 RecipeCard(
                     recipe = recipe,
-                    onClick = { onRecipeClick(recipe) },
+                    onRecipeClick = { onRecipeClick(recipe) },
                     onFavoriteToggle = { onFavoriteToggle(recipe) }
                 )
             }

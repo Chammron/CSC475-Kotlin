@@ -33,6 +33,9 @@ fun RecipeApp(preferencesManager: PreferencesManager) {
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) }
     ) {
-        NavigationGraph(navController = navController, preferencesManager = preferencesManager)
+        NavigationGraph(
+            navController = navController,
+            preferencesManager = preferencesManager
+        )
     }
 }

@@ -23,7 +23,7 @@ fun NavigationGraph(
                     navController.navigate("recipeDetail/$recipeJson")
                 },
                 onFavoriteToggle = { recipe ->
-                    // Update the favorite status by copying the object
+                    // Update the favorite status of the recipe
                     val updatedRecipe = recipe.copy(isFavorite = !recipe.isFavorite)
                     val index = RecipeData.recipes.indexOf(recipe)
                     if (index != -1) {
@@ -35,9 +35,27 @@ fun NavigationGraph(
                 }
             )
         }
+
         composable(Screen.Search.route) {
-            SearchScreen()
+            SearchScreen(
+                onRecipeClick = { recipe ->
+                    val recipeJson = Gson().toJson(recipe)
+                    navController.navigate("recipeDetail/$recipeJson")
+                },
+                onFavoriteToggle = { recipe ->
+                    // Update the favorite status of the recipe
+                    val updatedRecipe = recipe.copy(isFavorite = !recipe.isFavorite)
+                    val index = RecipeData.recipes.indexOf(recipe)
+                    if (index != -1) {
+                        RecipeData.recipes[index] = updatedRecipe
+                    }
+                    preferencesManager.saveFavorites(
+                        RecipeData.recipes.filter { it.isFavorite }.map { it.id }
+                    )
+                }
+            )
         }
+
         composable(Screen.Favorites.route) {
             FavoritesScreen(
                 onRecipeClick = { recipe ->
@@ -45,7 +63,7 @@ fun NavigationGraph(
                     navController.navigate("recipeDetail/$recipeJson")
                 },
                 onFavoriteToggle = { recipe ->
-                    // Update the favorite status by copying the object
+                    // Update the favorite status of the recipe
                     val updatedRecipe = recipe.copy(isFavorite = !recipe.isFavorite)
                     val index = RecipeData.recipes.indexOf(recipe)
                     if (index != -1) {
@@ -57,6 +75,7 @@ fun NavigationGraph(
                 }
             )
         }
+
         composable(
             route = "recipeDetail/{recipeJson}",
             arguments = listOf(navArgument("recipeJson") { nullable = true })

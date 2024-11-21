@@ -6,5 +6,5 @@ data class Recipe(
     val imageResId: Int,
     val ingredients: List<String>,
     val instructions: String,
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false // Added isFavorite property
 )
