@@ -27,7 +27,6 @@ fun RecipeDetailScreen(recipe: Recipe, navController: NavController) {
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        // Back Button
         IconButton(
             onClick = { navController.popBackStack() },
             modifier = Modifier.align(Alignment.Start)
@@ -38,7 +37,6 @@ fun RecipeDetailScreen(recipe: Recipe, navController: NavController) {
             )
         }
 
-        // Recipe Image
         Image(
             painter = painterResource(id = recipe.imageResId),
             contentDescription = recipe.name,
@@ -50,7 +48,6 @@ fun RecipeDetailScreen(recipe: Recipe, navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Recipe Name
         Text(
             text = recipe.name,
             fontSize = 24.sp,
@@ -59,7 +56,6 @@ fun RecipeDetailScreen(recipe: Recipe, navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Ingredients
         Text(
             text = "Ingredients:",
             fontSize = 20.sp,
@@ -72,7 +68,6 @@ fun RecipeDetailScreen(recipe: Recipe, navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Instructions
         Text(
             text = "Instructions:",
             fontSize = 20.sp,

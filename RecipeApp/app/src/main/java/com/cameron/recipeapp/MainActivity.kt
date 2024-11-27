@@ -12,12 +12,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Initialize SharedPreferences Manager
         val preferencesManager = PreferencesManager(this)
 
-        // Load favorites from SharedPreferences
         val favoriteIds = preferencesManager.getFavorites()
-        RecipeData.recipes.replaceAll { recipe ->
+        RecipeData.recipes.replaceAll { recipe: Recipe ->
             recipe.copy(isFavorite = favoriteIds.contains(recipe.id))
         }
 

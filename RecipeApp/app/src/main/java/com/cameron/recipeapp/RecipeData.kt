@@ -1,11 +1,14 @@
 package com.cameron.recipeapp
 
+import Recipe
+import androidx.compose.runtime.mutableStateListOf
+
 object RecipeData {
-    val recipes = mutableListOf(
+    val recipes = mutableStateListOf(
         Recipe(
             id = 1,
             name = "Pancakes",
-            imageResId = R.drawable.pancake, // Replace with the actual image resource
+            imageResId = R.drawable.pancake,
             ingredients = listOf(
                 "1 cup all-purpose flour",
                 "2 tbsp sugar",

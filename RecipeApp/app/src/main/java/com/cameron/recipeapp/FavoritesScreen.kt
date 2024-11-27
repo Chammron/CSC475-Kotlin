@@ -14,9 +14,11 @@ fun FavoritesScreen(
     onRecipeClick: (Recipe) -> Unit,
     onFavoriteToggle: (Recipe) -> Unit
 ) {
-    val favoriteRecipes = RecipeData.recipes.filter { it.isFavorite }
+    //Filter.
+    val favoriteRecipes: List<Recipe> = RecipeData.recipes.filter { it.isFavorite }
 
     if (favoriteRecipes.isEmpty()) {
+        //Message if no recipes are favorites.
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -26,9 +28,17 @@ fun FavoritesScreen(
     } else {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(8.dp),
+            //Card spacing.
+            contentPadding = PaddingValues(
+                start = 8.dp,
+                end = 8.dp,
+                top = 8.dp,
+                bottom = 80.dp
+            ),
+            //Space between cards.
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            //Display each favorite recipe as a RecipeCard.
             items(favoriteRecipes) { recipe ->
                 RecipeCard(
                     recipe = recipe,

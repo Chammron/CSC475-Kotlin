@@ -36,7 +36,6 @@ fun RecipeCard(
             modifier = Modifier.padding(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Display Recipe Image
             Image(
                 painter = painterResource(id = recipe.imageResId),
                 contentDescription = "Recipe Image",
@@ -66,7 +65,7 @@ fun RecipeCard(
                 )
             }
 
-            IconButton(onClick = onFavoriteToggle) {
+            IconButton(onClick = { onFavoriteToggle() }) {
                 val icon = if (recipe.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite_outline
                 Icon(
                     painter = painterResource(id = icon),

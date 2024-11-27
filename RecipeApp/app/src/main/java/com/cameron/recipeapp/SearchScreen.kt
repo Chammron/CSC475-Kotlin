@@ -1,7 +1,6 @@
 package com.cameron.recipeapp
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
@@ -10,7 +9,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.background
 
 @Composable
 fun SearchScreen(
@@ -23,14 +21,13 @@ fun SearchScreen(
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        BasicTextField(
+        OutlinedTextField(
             value = query,
             onValueChange = { query = it },
+            label = { Text("Search") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .background(MaterialTheme.colorScheme.surface, MaterialTheme.shapes.small)
-                .padding(horizontal = 16.dp, vertical = 8.dp)
         )
 
         if (filteredRecipes.isEmpty()) {
@@ -43,7 +40,12 @@ fun SearchScreen(
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(8.dp),
+                contentPadding = PaddingValues(
+                    start = 8.dp,
+                    top = 8.dp,
+                    end = 8.dp,
+                    bottom = 80.dp
+                ),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(filteredRecipes) { recipe ->
