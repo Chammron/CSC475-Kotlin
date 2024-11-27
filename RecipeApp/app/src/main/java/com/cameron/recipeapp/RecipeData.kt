@@ -1,8 +1,8 @@
 package com.cameron.recipeapp
 
-import Recipe
 import androidx.compose.runtime.mutableStateListOf
 
+//Recipes.
 object RecipeData {
     val recipes = mutableStateListOf(
         Recipe(

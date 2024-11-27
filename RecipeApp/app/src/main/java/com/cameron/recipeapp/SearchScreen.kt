@@ -10,17 +10,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 
+//Displays the search scree.
 @Composable
 fun SearchScreen(
     onRecipeClick: (Recipe) -> Unit,
     onFavoriteToggle: (Recipe) -> Unit
 ) {
+    //Manages the search query state.
     var query by remember { mutableStateOf(TextFieldValue("")) }
+
+    //Filters recipes.
     val filteredRecipes = RecipeData.recipes.filter { recipe ->
         recipe.name.contains(query.text, ignoreCase = true)
     }
 
+    //Lays out the search bar and the filtered recipe list.
     Column(modifier = Modifier.fillMaxSize()) {
+        //Search bar.
         OutlinedTextField(
             value = query,
             onValueChange = { query = it },
@@ -30,6 +36,7 @@ fun SearchScreen(
                 .padding(16.dp)
         )
 
+        //Displays a message if no recipes match the query.
         if (filteredRecipes.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
@@ -38,6 +45,7 @@ fun SearchScreen(
                 Text(text = "Sorry. No recipes found under that name.")
             }
         } else {
+            //Displays the filtered recipes in a scrollable list.
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(
@@ -48,6 +56,7 @@ fun SearchScreen(
                 ),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                //Creates a card for each filtered recipe.
                 items(filteredRecipes) { recipe ->
                     RecipeCard(
                         recipe = recipe,

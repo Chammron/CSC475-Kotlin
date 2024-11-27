@@ -14,15 +14,19 @@ fun HomeScreen(
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
+        //Card spacing.
         contentPadding = PaddingValues(
             start = 8.dp,
             end = 8.dp,
             top = 8.dp,
             bottom = 80.dp
         ),
+        //Space between cards.
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
+        //Populate column with recipes.
         items(items = RecipeData.recipes) { recipe: Recipe ->
+            //Display each recipe using a RecipeCard.
             RecipeCard(
                 recipe = recipe,
                 onRecipeClick = { onRecipeClick(recipe) },

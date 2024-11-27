@@ -21,22 +21,25 @@ import androidx.navigation.NavController
 
 @Composable
 fun RecipeDetailScreen(recipe: Recipe, navController: NavController) {
+    //Main vertical layout for the detail screen.
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
+        //Back button to go back to the previous screen.
         IconButton(
             onClick = { navController.popBackStack() },
             modifier = Modifier.align(Alignment.Start)
         ) {
             Icon(
-                imageVector = ImageVector.vectorResource(id = R.drawable.ic_baseline_arrow_back_24), // Use a back arrow icon
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_baseline_arrow_back_24), // Back arrow icon
                 contentDescription = "Back"
             )
         }
 
+        //Displays the recipe image.
         Image(
             painter = painterResource(id = recipe.imageResId),
             contentDescription = recipe.name,
@@ -48,6 +51,7 @@ fun RecipeDetailScreen(recipe: Recipe, navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //Displays the recipe name.
         Text(
             text = recipe.name,
             fontSize = 24.sp,
@@ -56,24 +60,30 @@ fun RecipeDetailScreen(recipe: Recipe, navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //Section header for ingredients.
         Text(
             text = "Ingredients:",
             fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold
         )
         Spacer(modifier = Modifier.height(8.dp))
+
+        //List of ingredients.
         recipe.ingredients.forEach { ingredient ->
             Text(text = "- $ingredient", fontSize = 16.sp)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //Section header for instructions.
         Text(
             text = "Instructions:",
             fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold
         )
         Spacer(modifier = Modifier.height(8.dp))
+
+        //Cooking instructions.
         Text(
             text = recipe.instructions,
             fontSize = 16.sp

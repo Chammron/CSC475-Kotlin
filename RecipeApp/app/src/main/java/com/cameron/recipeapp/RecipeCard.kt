@@ -24,7 +24,9 @@ fun RecipeCard(
     onRecipeClick: () -> Unit,
     onFavoriteToggle: () -> Unit
 ) {
+    // Card to display the recipe
     Card(
+        //Styling for the card.
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
@@ -32,25 +34,29 @@ fun RecipeCard(
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
+        //Layout for the card.
         Row(
             modifier = Modifier.padding(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            //Displays the recipe image.
             Image(
                 painter = painterResource(id = recipe.imageResId),
                 contentDescription = "Recipe Image",
+                //Modifiers for the image.
                 modifier = Modifier
                     .size(64.dp)
                     .clip(RoundedCornerShape(8.dp))
                     .background(Color.Gray),
                 contentScale = ContentScale.Crop
             )
-
+            //Space between image and recipe name.
             Spacer(modifier = Modifier.width(16.dp))
-
+            //Column for recipe name and favorite status.
             Column(
                 modifier = Modifier.weight(1f)
             ) {
+                //Recipe name + styling.
                 Text(
                     text = recipe.name,
                     fontWeight = FontWeight.Bold,
@@ -58,17 +64,20 @@ fun RecipeCard(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
+                //Text to display whether the recipe is favorited.
                 Text(
                     text = if (recipe.isFavorite) "Favorited" else "Not Favorited",
                     fontSize = 14.sp,
                     color = Color.Gray
                 )
             }
-
+            //Favorite icon toggle button.
             IconButton(onClick = { onFavoriteToggle() }) {
+                //Icon based on the recipe's favorite status.
                 val icon = if (recipe.isFavorite) R.drawable.ic_favorite_filled else R.drawable.ic_favorite_outline
                 Icon(
                     painter = painterResource(id = icon),
+                    //Accessibility description for the icon.
                     contentDescription = "Favorite Toggle"
                 )
             }
