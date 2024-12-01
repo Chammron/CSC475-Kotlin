@@ -20,6 +20,9 @@ android {
 
     buildTypes {
         release {
+            create("customDebugType") {
+                isDebuggable = true
+            }
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -44,6 +47,14 @@ android {
 
 dependencies {
 
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.8.4")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.7.5")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.7.5")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.7.5")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+    testImplementation("org.mockito:mockito-core:5.5.0")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("androidx.compose.material3:material3:1.3.1")
     implementation("androidx.core:core-ktx:1.12.0")

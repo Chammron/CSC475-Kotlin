@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 
-//Displays the search scree.
+//Displays the search screen.
 @Composable
 fun SearchScreen(
     onRecipeClick: (Recipe) -> Unit,
@@ -26,7 +26,6 @@ fun SearchScreen(
 
     //Lays out the search bar and the filtered recipe list.
     Column(modifier = Modifier.fillMaxSize()) {
-        //Search bar.
         OutlinedTextField(
             value = query,
             onValueChange = { query = it },
